@@ -1,4 +1,5 @@
-import { createResource } from "solid-js"
+import { A } from "@solidjs/router"
+import { Show, createResource } from "solid-js"
 import Card from "../Components/Card"
 
 async function fetchProducts() {
@@ -11,21 +12,19 @@ export default function Home() {
 
 
     return (
+      <Show when={products()} fallback={<p>Loading... </p>}>
         <div class='grid grid-cols-4 gap-10 my-4'>
-        {/* <Card /> */}
-        <Card rounded={true} flat={false}>
-          <h2>Ninja Tee, Black</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptate ad illum ipsa cumque, iure eveniet!</p>
-          <button class='btn'>View</button>
-        </Card>
-        <Card rounded={false} flat={true}>
-        <h2>Ninja Tee, White</h2>
-          <button class='btn'>Click me!</button>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptate ad illum ipsa cumque, iure eveniet!</p>
-          <p>Only S/59</p>
-        </Card>
-
-        <p>{console.log(products(), products.loading)}</p>
+          <For each={products()}>
+            {(product) => (
+              <Card rounded={ true} flat={true}>
+                <img src={product.img} alt="product img" />
+                <h2 class='my-3 font-bold'>{product.title}</h2>
+                <A href={'/product/'+ product.id} class="btn"></A>
+              </Card>
+            )}
+          </For>
         </div>
+      </Show>
+
     )
 }
