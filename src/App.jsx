@@ -4,6 +4,7 @@ import banner from './assets/banner.png'
 import Home from './Pages/Home';
 import Cart from './Pages/Cart' 
 import Product from './Pages/Product';
+import { useCartContext } from './Context/CartContex';
 
 function App() {
   
@@ -11,7 +12,14 @@ function App() {
   const toggleTheme = () =>{
     setDarkTheme(!darkTheme())
   }
+  const { items } = useCartContext()
 
+  const quantity = () => {
+    return items.reduce((acc, current) => {
+      return acc + current.quantity
+    },0)
+  }
+  console.log(quantity)
   return (
     <div class='container m-auto '>
       <header
@@ -22,9 +30,11 @@ function App() {
           onClick={toggleTheme}>
           light_mode
         </span>
+        <A href='/'>
         <h1> Ninja Merch</h1>
+        </A>
         <A href='/'>Home</A>
-        <A href='/cart'>Cart</A>
+        <A href='/cart'>Cart ({quantity()})</A>
       </header>
       <img class='rounded-2xl' src={banner} alt="site banner" />
 

@@ -12,14 +12,15 @@ export default function Product() {
     const[product] = createResource(params.id,fetchProduct)
     const { items, setItems } = useCartContext()
     function addProduct() {
-        const exits = items.find(p =>p.id === product().id)
-        if (exits) {
-            setItems(p => p.id == product().id, 'quantity', q => q+1)
+        const exists = items.find(p =>p.id === product().id)
+        if (exists) {
+            setItems(p => p.id === product().id, 'quantity', q => q+1)
         }
-
-        if (!exits) {
+        
+        if (!exists) {
             setItems([...items, {...product(), quantity: 1}])
         }
+        console.log(product())
     }
     
     return (
@@ -34,7 +35,7 @@ export default function Product() {
                 <p> {product().description} </p>
                 <p class="my-7 text-2xl"> Only S/{product().price}.00 </p>
 
-                <button class='btn' onClick={addProduct()}>Add to Cart</button>
+                <button class='btn' onClick={addProduct}>Add to Cart</button>
             </div>
         </div>
         </Show>

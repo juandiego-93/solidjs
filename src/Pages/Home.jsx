@@ -1,5 +1,6 @@
 import { A } from "@solidjs/router"
 import { Show, createResource } from "solid-js"
+
 import Card from "../Components/Card"
 
 async function fetchProducts() {
@@ -25,6 +26,5 @@ export default function Home() {
           </For>
         </div>
       </Show>
-
     )
 }
