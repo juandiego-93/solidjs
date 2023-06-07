@@ -4,6 +4,7 @@ import banner from './assets/banner.png'
 import Home from './Pages/Home';
 import Cart from './Pages/Cart' 
 import Product from './Pages/Product';
+
 function App() {
   
   const [darkTheme, setDarkTheme] = createSignal(false)
@@ -30,7 +31,7 @@ function App() {
       <Routes>
         <Route path='/' component={Home}/>
         <Route path='/cart' component={Cart}/>
-        <Route path='/product:id' component={Product}/>
+        <Route path='/product/:id' component={Product}/>
       </Routes>
 
 
